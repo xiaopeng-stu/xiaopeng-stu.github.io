@@ -1,178 +1,483 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- 编辑 1：替换浏览器标签页标题和简介中的占位文字。 -->
-  <title> Xiaopeng Zheng｜学术主页</title>
-  <meta name="description" content="【你的姓名】的学术主页：研究兴趣、论文、项目和公开联系方式。">
+  <title>Xiaopeng Zheng | Research</title>
+  <meta name="description" content="Research papers by Xiaopeng Zheng in computer algebra, polynomial matrices, Gröbner bases, and fully homomorphic encryption.">
   <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="color-scheme" content="light">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src 'self' data:; font-src 'self'; base-uri 'none'; form-action 'none'">
+  <!-- Single-file static website. No JavaScript, external fonts, analytics or cookies.
+       All text and HTML comments are public. Do not store private information here.
+       UPDATE 1: Edit the name, description and introductory text as needed.
+       UPDATE 2: Add a current affiliation only after confirming the exact wording.
+       UPDATE 3: Add an email only when you are ready to make it public.
+       Full publication sources and verification limitations are in PUBLICATION_NOTES.md.
+  -->
   <style>
     :root {
-      --paper: #fcfcfa;
-      --ink: #202b36;
-      --muted: #596571;
-      --accent: #185b68;
-      --line: #dce3e2;
-      --tint: #f0f5f3;
+      --paper: #fcfcfa; --ink: #202b36; --muted: #58656e;
+      --accent: #185b68; --line: #dce3e2; --tint: #eef4f2;
     }
     * { box-sizing: border-box; }
-    html { scroll-padding-top: 24px; }
-    body {
-      margin: 0;
-      background: var(--paper);
-      color: var(--ink);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
-      font-size: 16px;
-      line-height: 1.85;
-      overflow-wrap: anywhere;
-    }
+    html { scroll-padding-top: 28px; }
+    body { margin: 0; background: var(--paper); color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      font-size: 16px; line-height: 1.72; }
     a { color: var(--accent); text-underline-offset: 4px; }
     a:hover { text-decoration-thickness: 2px; }
-    a:focus-visible { outline: 3px solid var(--accent); outline-offset: 5px; }
-    .skip-link { position: absolute; left: 16px; top: -100px; padding: 8px 14px; background: white; }
+    a:focus-visible, summary:focus-visible { outline: 3px solid var(--accent); outline-offset: 5px; }
+    .skip-link { position: absolute; left: 18px; top: -100px; padding: 8px 14px; background: white; }
     .skip-link:focus { top: 12px; z-index: 2; }
-    .page { width: min(100% - 64px, 1060px); margin: 0 auto; }
-    .site-header { padding: 56px 0 34px; border-bottom: 1px solid var(--line); }
-    .eyebrow { margin: 0 0 10px; color: var(--accent); font-size: 13px; letter-spacing: 0.15em; }
-    h1, h2, h3 { line-height: 1.4; font-weight: 650; }
-    h1 { margin: 0 0 14px; font-size: clamp(30px, 4.5vw, 44px); letter-spacing: -0.025em; }
-    .affiliation { margin: 0; color: var(--muted); }
-    .layout { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 58px; padding-top: 38px; }
+    .page { width: min(100% - 72px, 1100px); margin: 0 auto; }
+    .site-header { padding: 54px 0 33px; border-bottom: 1px solid var(--line); }
+    .eyebrow { margin: 0 0 10px; color: var(--accent); font-size: 12px; font-weight: 650;
+      letter-spacing: .16em; text-transform: uppercase; }
+    h1, h2, h3, h4 { line-height: 1.35; }
+    h1 { margin: 0 0 12px; font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(36px, 5vw, 50px); font-weight: 500; letter-spacing: -.03em; }
+    .affiliation { margin: 0; color: var(--muted); font-size: 17px; }
+    .layout { display: grid; grid-template-columns: 172px minmax(0, 1fr); gap: 58px; padding-top: 34px; }
     .sidebar { align-self: start; position: sticky; top: 26px; }
-    .nav-label { margin: 0 0 12px; color: var(--muted); font-size: 12px; letter-spacing: 0.08em; }
-    nav { display: flex; flex-direction: column; gap: 10px; }
-    nav a { width: fit-content; text-decoration: none; font-size: 15px; padding: 2px 0; }
-    nav a:hover { text-decoration: underline; }
-    .sidebar-note { margin: 28px 0 0; padding-top: 18px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
+    .nav-label { margin: 0 0 12px; font-size: 11px; color: var(--muted);
+      letter-spacing: .12em; text-transform: uppercase; }
+    .main-nav { display: flex; flex-direction: column; gap: 8px; }
+    .main-nav a { width: fit-content; text-decoration: none; font-size: 14px; padding: 3px 0; }
+    .main-nav a:hover { text-decoration: underline; }
+    .side-years { margin-top: 25px; padding-top: 21px; border-top: 1px solid var(--line); }
+    .side-years a { display: flex; justify-content: space-between; padding: 4px 0;
+      max-width: 120px; color: var(--muted); font-size: 13px; text-decoration: none; }
+    .side-years a:hover { color: var(--accent); }
+    .side-years .count { font-variant-numeric: tabular-nums; }
+    .sidebar-note { margin: 22px 0 0; font-size: 12px; color: var(--muted); }
     main { min-width: 0; }
-    section { margin-bottom: 34px; padding-bottom: 30px; border-bottom: 1px solid var(--line); }
-    section:last-child { margin-bottom: 0; border-bottom: none; }
-    h2 { margin: 0 0 18px; font-size: 22px; }
-    h3 { margin: 0 0 8px; font-size: 17px; }
-    p { margin: 0 0 13px; }
+    section { margin-bottom: 32px; padding-bottom: 29px; border-bottom: 1px solid var(--line); }
+    section:last-child { border-bottom: none; margin-bottom: 0; }
+    h2 { margin: 0 0 15px; font-size: 23px; font-weight: 650; letter-spacing: -.015em; }
+    p { margin: 0 0 12px; }
     p:last-child { margin-bottom: 0; }
-    .interests { padding-left: 21px; margin: 0; }
-    .interests li { padding-left: 4px; margin-bottom: 8px; }
-    .interests li:last-child { margin-bottom: 0; }
-    .entry + .entry { margin-top: 24px; padding-top: 24px; border-top: 1px dashed var(--line); }
-    .meta { color: var(--muted); font-size: 14px; }
-    .project-note { margin-top: 12px; padding: 14px 18px; background: var(--tint); border-left: 3px solid var(--accent); }
-    footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; padding: 24px 0 32px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
+    .intro { max-width: 720px; }
+    .interest-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+    .interest-grid h3 { margin: 0 0 6px; font-size: 15px; font-weight: 650; }
+    .interest-grid p { color: var(--muted); font-size: 14px; line-height: 1.65; }
+    .section-heading { display: flex; align-items: baseline; justify-content: space-between;
+      gap: 16px; flex-wrap: wrap; }
+    .section-heading h2 { margin-bottom: 8px; }
+    .total { color: var(--muted); font-size: 12px; white-space: nowrap; }
+    .publication-note { color: var(--muted); font-size: 13px; line-height: 1.7; margin-bottom: 18px; }
+    .year-nav { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 29px; }
+    .year-nav a { text-decoration: none; padding: 3px 12px; border: 1px solid var(--line);
+      border-radius: 4px; font-size: 13px; }
+    .year-nav a:hover { background: var(--tint); }
+    .publication-year { margin: 0 0 35px; }
+    .publication-year:last-child { margin-bottom: 0; }
+    .year-heading { display: flex; align-items: baseline; gap: 12px; margin: 0 0 6px;
+      padding-bottom: 12px; border-bottom: 1px solid var(--line); font-size: 25px;
+      font-family: Georgia, "Times New Roman", serif; font-weight: 500; }
+    .year-count { color: var(--muted); font-size: 12px; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; }
+    .publication-list { list-style: none; padding: 0; margin: 0; counter-reset: papers; }
+    .publication-list > li { position: relative; padding: 22px 0 22px 34px; counter-increment: papers; }
+    .publication-list > li + li { border-top: 1px solid var(--line); }
+    .publication-list > li:last-child { padding-bottom: 4px; }
+    .publication-list > li::before { content: counter(papers, decimal-leading-zero); position: absolute;
+      top: 24px; left: 0; color: var(--muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+    .pub-title { margin: 0 0 8px; font-size: 17px; font-weight: 650; line-height: 1.48; overflow-wrap: anywhere; }
+    .authors { margin: 0 0 5px; font-size: 14px; line-height: 1.65; color: #44515c; }
+    .authors strong { font-weight: 650; color: var(--ink); }
+    .venue { margin: 0 0 5px; font-size: 14px; color: var(--muted); line-height: 1.65; }
+    .venue em { color: #44515c; }
+    .badge { display: inline-block; margin-left: 7px; padding: 1px 6px; border-radius: 3px;
+      background: var(--tint); color: var(--accent); font-size: 11px; font-style: normal;
+      font-weight: 550; white-space: nowrap; vertical-align: 1px; }
+    .doi { margin: 6px 0 0; font-size: 12px; line-height: 1.7; overflow-wrap: anywhere; color: var(--muted); }
+    .doi a { text-decoration-color: #b4c5c7; }
+    .paper-links { display: flex; flex-wrap: wrap; gap: 7px 17px; margin-top: 7px; font-size: 12px; line-height: 1.8; }
+    .paper-links a { text-decoration: none; border-bottom: 1px solid #b4c5c7; }
+    .paper-links a:hover { border-bottom-color: var(--accent); }
+    .math { font-family: "Cambria Math", "STIX Two Math", "Times New Roman", serif; white-space: nowrap; }
+    .tilde-o { display: inline-block; position: relative; font-style: italic; }
+    .tilde-o::before { content: "~"; position: absolute; top: -.40em; left: 0; width: 100%; text-align: center; font-size: .85em; font-style: normal; }
+    .profile-note { font-size: 13px; color: var(--muted); }
+    .link-notes { margin-top: 27px; padding: 12px 15px; background: var(--tint); border-radius: 4px; font-size: 12px; color: var(--muted); }
+    .link-notes summary { cursor: pointer; color: var(--accent); font-weight: 550; }
+    .link-notes p { margin: 9px 0 0; }
+    footer { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+      border-top: 1px solid var(--line); padding: 22px 0 30px; color: var(--muted); font-size: 12px; }
     footer p { margin: 0; }
-    @media (max-width: 720px) {
-      .page { width: min(100% - 36px, 600px); }
-      .site-header { padding: 36px 0 26px; }
-      .layout { grid-template-columns: 1fr; gap: 28px; padding-top: 24px; }
+    @media (max-width: 760px) {
+      .page { width: min(100% - 36px, 650px); }
+      .site-header { padding: 33px 0 25px; }
+      .layout { grid-template-columns: 1fr; gap: 24px; padding-top: 21px; }
       .sidebar { position: static; }
-      .nav-label, .sidebar-note { display: none; }
-      nav { flex-direction: row; flex-wrap: wrap; gap: 8px 21px; padding-bottom: 18px; border-bottom: 1px solid var(--line); }
-      section { margin-bottom: 26px; padding-bottom: 26px; }
-      h2 { font-size: 21px; }
+      .nav-label, .side-years, .sidebar-note { display: none; }
+      .main-nav { flex-direction: row; flex-wrap: wrap; gap: 7px 22px; border-bottom: 1px solid var(--line); padding-bottom: 17px; }
+      .main-nav a { font-size: 14px; }
+      .interest-grid { gap: 20px; }
+      .publication-list > li { padding-left: 28px; }
+      .pub-title { font-size: 16px; }
+      .authors, .venue { font-size: 13px; }
+      .affiliation { font-size: 15px; }
+    }
+    @media (max-width: 460px) {
+      .interest-grid { grid-template-columns: 1fr; gap: 16px; }
+      .section-heading { gap: 0 12px; }
+      .total { margin-bottom: 10px; }
     }
     @media print {
-      body { background: white; color: black; font-size: 11pt; }
+      body { color: #000; background: #fff; font-size: 10pt; }
       .page { width: 100%; }
-      .site-header { padding-top: 0; }
-      .layout { display: block; padding-top: 24px; }
-      .sidebar, .skip-link, footer a { display: none; }
-      section, .entry { break-inside: avoid; }
+      .site-header { padding: 0 0 16px; }
+      .layout { display: block; padding-top: 20px; }
+      .sidebar, .skip-link, .year-nav, .link-notes, footer a { display: none; }
+      .publication-list > li { break-inside: avoid; }
+      .year-heading { break-after: avoid; }
+      .pub-title { font-size: 11pt; }
+      .authors, .venue { font-size: 9pt; }
+      .paper-links, .doi { font-size: 8pt; }
       a { color: inherit; }
+      section { margin-bottom: 22px; padding-bottom: 18px; }
     }
+
   </style>
 </head>
 <body>
-  <a class="skip-link" href="#main-content">跳转到正文</a>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
   <div class="page">
     <header class="site-header" id="top">
-      <p class="eyebrow">学术主页</p>
-      <!-- 编辑 2：姓名可以是真名，也可以是你公开使用的名字。单位和身份均可删除。 -->
-      <h1> Xiaopeng Zheng </h1>
-      <p class="affiliation"> Shantou University · College of Mathematics and Computer Science</p>
+      <p class="eyebrow">Academic website</p>
+      <h1>Xiaopeng Zheng</h1>
+      <p class="affiliation">Computer Algebra &amp; Homomorphic Encryption</p>
+      <!-- Optional current affiliation: add a new p element here after confirming it. -->
     </header>
-
     <div class="layout">
-      <aside class="sidebar" aria-label="页面导航">
-        <p class="nav-label">页内导航</p>
-        <nav aria-label="主导航">
-          <a href="#about">关于我</a>
-          <a href="#research">研究兴趣</a>
-          <a href="#publications">论文与成果</a>
-          <a href="#projects">项目与笔记</a>
-          <a href="#contact">联系方式</a>
+      <aside class="sidebar" aria-label="Page navigation">
+        <p class="nav-label">On this page</p>
+        <nav class="main-nav" aria-label="Main navigation">
+          <a href="#about">About</a>
+          <a href="#research">Research Interests</a>
+          <a href="#publications">Research Papers</a>
+          <a href="#profiles">Academic Profile</a>
         </nav>
-        <p class="sidebar-note">研究、学习与公开成果的记录。</p>
+        <div class="side-years">
+          <p class="nav-label">Papers by year</p>
+          <nav aria-label="Publication years">
+              <a href="#papers-2026">2026<span class="count">8</span></a>
+              <a href="#papers-2025">2025<span class="count">4</span></a>
+              <a href="#papers-2024">2024<span class="count">2</span></a>
+              <a href="#papers-2023">2023<span class="count">3</span></a>
+              <a href="#papers-2022">2022<span class="count">2</span></a>
+          </nav>
+        </div>
+        <p class="sidebar-note">Publications and preprints<br>2022–2026</p>
       </aside>
-
       <main id="main-content">
-        <!-- 编辑 3：只填写真实且愿意公开的信息。HTML 注释也会公开，不要在其中放秘密。 -->
         <section id="about" aria-labelledby="about-heading">
-          <h2 id="about-heading">关于我</h2>
-          <p>【个人简介：用两三句话介绍你的研究兴趣、正在学习的问题，以及你希望开展的工作。】</p>
-          <p>【补充介绍：可以写自己的研究经历或代表性工作；暂时没有内容时，可删除这一整行 p 元素。】</p>
+          <h2 id="about-heading">About</h2>
+          <!-- Introductory text drafted from the topics of the supplied papers. Edit freely. -->
+          <p class="intro">My research focuses on computer algebra and fully homomorphic encryption. I study polynomial matrices, Gröbner bases, and parametric polynomial systems, as well as algorithms for efficient computation on encrypted data.</p>
         </section>
-
-        <!-- 编辑 4：替换或删减研究方向。 -->
         <section id="research" aria-labelledby="research-heading">
-          <h2 id="research-heading">研究兴趣</h2>
-          <ul class="interests">
-            <li>【研究方向一】</li>
-            <li>【研究方向二】</li>
-            <li>【研究方向三】</li>
-          </ul>
+          <h2 id="research-heading">Research Interests</h2>
+          <div class="interest-grid">
+            <div>
+              <h3>Computer Algebra</h3>
+              <p>Polynomial matrix factorizations and Smith forms; Gröbner and standard bases; parametric polynomial systems and rational univariate representations.</p>
+            </div>
+            <div>
+              <h3>Homomorphic Encryption</h3>
+              <p>Homomorphic matrix multiplication; functional bootstrapping; CKKS bootstrapping and efficient linear transformations.</p>
+            </div>
+          </div>
         </section>
-
-        <!-- 编辑 5：每篇成果占一个 article。增加成果时，复制完整 article 元素。
-             没有论文也可以填写课程报告或复现成果，但请准确标注类型。
-             需要添加链接时，可在相应文章中加入：
-             <p><a href="把这里替换为论文的完整 HTTPS 地址">阅读论文</a></p>
-             上述示例位于注释中，不会显示在页面上。
-        -->
         <section id="publications" aria-labelledby="publications-heading">
-          <h2 id="publications-heading">论文与成果</h2>
-          <article class="entry">
-            <h3>【论文或研究报告标题】</h3>
-            <p class="meta">【作者列表】 · 【年份】</p>
-            <p class="meta">【期刊、会议或成果类型；请如实标明已发表、预印本等状态】</p>
-            <p>【用一两句话介绍主要问题与结果。】</p>
-          </article>
-          <article class="entry">
-            <h3>【另一项成果的标题；没有时可删除整个 article 元素】</h3>
-            <p class="meta">【作者列表】 · 【年份】</p>
-            <p>【这项成果的类型、贡献或进展。】</p>
-          </article>
+          <div class="section-heading">
+            <h2 id="publications-heading">Research Papers</h2>
+            <span class="total">19 papers &amp; preprints</span>
+          </div>
+          <p class="publication-note">Journal articles, conference papers, and preprints. My name is highlighted in each author list.</p>
+          <nav class="year-nav" aria-label="Jump to publication year">
+            <a href="#papers-2026">2026</a>
+            <a href="#papers-2025">2025</a>
+            <a href="#papers-2024">2024</a>
+            <a href="#papers-2023">2023</a>
+            <a href="#papers-2022">2022</a>
+          </nav>
+          <div class="publication-year" id="papers-2026">
+            <h3 class="year-heading">2026<span class="year-count">8 papers</span></h3>
+            <ol class="publication-list">
+            <!-- Publication: functional-bootstrapping. Copy this entire li element to add a paper. -->
+            <li>
+              <article id="functional-bootstrapping" aria-labelledby="functional-bootstrapping-title">
+                <h4 class="pub-title" id="functional-bootstrapping-title">Functional Bootstrapping for a Single LWE Ciphertext with <span class="math" role="math" aria-label="soft O of one"><span class="tilde-o">O</span>(1)</span> Polynomial Multiplications</h4>
+                <p class="authors"><strong>Xiaopeng Zheng</strong>, Hongbo Li, Dingkang Wang.</p>
+                <p class="venue"><em>ASIACRYPT 2026</em>. Accepted for publication. Cryptology ePrint Archive, Paper 2026/975. <span class="badge">Accepted</span></p>
+                <div class="paper-links" aria-label="Links for Functional Bootstrapping for a Single LWE Ciphertext with Õ(1) Polynomial Multiplications">
+                  <a href="https://eprint.iacr.org/2026/975">ePrint 2026/975</a>
+                  <a href="https://eprint.iacr.org/2026/975.pdf">PDF</a>
+                </div>
+              </article>
+            </li>
+            <!-- Publication: faster-coefftoslot. Copy this entire li element to add a paper. -->
+            <li>
+              <article id="faster-coefftoslot" aria-labelledby="faster-coefftoslot-title">
+                <h4 class="pub-title" id="faster-coefftoslot-title">Faster CoeffToSlot and SlotToCoeff for Sparsely Packed Ciphertexts with Application to CKKS Bootstrapping</h4>
+                <p class="authors"><strong>Xiaopeng Zheng</strong>.</p>
+                <p class="venue"><em>ASIACRYPT 2026</em>. Accepted for publication. Cryptology ePrint Archive, Paper 2026/1023. <span class="badge">Accepted</span></p>
+                <div class="paper-links" aria-label="Links for Faster CoeffToSlot and SlotToCoeff for Sparsely Packed Ciphertexts with Application to CKKS Bootstrapping">
+                  <a href="https://eprint.iacr.org/2026/1023">ePrint 2026/1023</a>
+                  <a href="https://eprint.iacr.org/2026/1023.pdf">PDF</a>
+                </div>
+              </article>
+            </li>
+            <!-- Publication: leading-term-ideals. Copy this entire li element to add a paper. -->
+            <li>
+              <article id="leading-term-ideals" aria-labelledby="leading-term-ideals-title">
+                <h4 class="pub-title" id="leading-term-ideals-title">Reduction of the Finite Generation Problem for Leading Term Ideals under Arbitrary Rational Monomial Orders to the Lexicographic</h4>
+                <p class="authors"><strong>Xiaopeng Zheng</strong>.</p>
+                <p class="venue"><em>arXiv:2607.25372</em>. Preprint, 2026. <span class="badge">Preprint</span></p>
+                <p class="doi">arXiv DOI: <a href="https://doi.org/10.48550/arXiv.2607.25372">10.48550/arXiv.2607.25372</a></p>
+                <div class="paper-links" aria-label="Links for Reduction of the Finite Generation Problem for Leading Term Ideals under Arbitrary Rational Monomial Orders to the Lexicographic">
+                  <a href="https://arxiv.org/abs/2607.25372">arXiv</a>
+                  <a href="https://arxiv.org/pdf/2607.25372">PDF</a>
+                </div>
+              </article>
+            </li>
+            <!-- Publication: multivariate-smith-equivalence. Copy this entire li element to add a paper. -->
+            <li>
+              <article id="multivariate-smith-equivalence" aria-labelledby="multivariate-smith-equivalence-title">
+                <h4 class="pub-title" id="multivariate-smith-equivalence-title">The Equivalence Theory of Smith Normal Forms for Multivariate Polynomial Matrices</h4>
+                <p class="authors">Dong Lu, Dingkang Wang, Fanghui Xiao, <strong>Xiaopeng Zheng</strong>.</p>
+                <p class="venue"><em>SCIENTIA SINICA Mathematica</em>. Advance online publication, 2026. In Chinese. <span class="badge">Online first</span></p>
+                <p class="doi">DOI: <a href="https://doi.org/10.1360/SSM-2025-0178">10.1360/SSM-2025-0178</a></p>
+                <div class="paper-links" aria-label="Links for The Equivalence Theory of Smith Normal Forms for Multivariate Polynomial Matrices">
+                  <a href="https://www.sciengine.com/SSM/doi/10.1360/SSM-2025-0178">Publisher</a>
+                </div>
+              </article>
+            </li>
+            <!-- Publication: smith-normal-forms. Copy this entire li element to add a paper. -->
+            <li>
+              <article id="smith-normal-forms" aria-labelledby="smith-normal-forms-title">
+                <h4 class="pub-title" id="smith-normal-forms-title">Smith Normal Forms of Bivariate Polynomial Matrices</h4>
+                <p class="authors">Dong Lu, Dingkang Wang, Fanghui Xiao, <strong>Xiaopeng Zheng</strong>.</p>
+                <p class="venue"><em>Linear Algebra and its Applications</em>. 737 (2026), 308–330.</p>
+                <p class="doi">DOI: <a href="https://doi.org/10.1016/j.laa.2026.02.022">10.1016/j.laa.2026.02.022</a></p>
+                <div class="paper-links" aria-label="Links for Smith Normal Forms of Bivariate Polynomial Matrices">
+                  <a href="http://mmrc.iss.ac.cn/~dwang/papers/26laa.pdf">PDF (author-hosted)</a>
+                </div>
+              </article>
+            </li>
+            <!-- Publication: bivariate-matrix-factorizations. Copy this entire li element to add a paper. -->
+            <li>
+              <article id="bivariate-matrix-factorizations" aria-labelledby="bivariate-matrix-factorizations-title">
+                <h4 class="pub-title" id="bivariate-matrix-factorizations-title">Theory and Algorithms for Bivariate Polynomial Matrix Factorizations</h4>
+                <p class="authors">Ligeng Fan, Dong Lu, Dingkang Wang, <strong>Xiaopeng Zheng</strong>.</p>
+                <p class="venue"><em>Communications in Mathematics and Statistics</em>. Published online 20 July 2026. <span class="badge">Online first</span></p>
+                <p class="doi">DOI: <a href="https://doi.org/10.1007/s40304-025-00489-8">10.1007/s40304-025-00489-8</a></p>
+                <div class="paper-links" aria-label="Links for Theory and Algorithms for Bivariate Polynomial Matrix Factorizations">
+                  <a href="http://mmrc.iss.ac.cn/~dwang/papers/26cims.pdf">PDF (author-hosted)</a>
+                </div>
+              </article>
+            </li>
+            <!-- Publication: zero-prime-syzygies. Copy this entire li element to add a paper. -->
+            <li>
+              <article id="zero-prime-syzygies" aria-labelledby="zero-prime-syzygies-title">
+                <h4 class="pub-title" id="zero-prime-syzygies-title">An Efficient Algorithm for Computing Syzygy Modules of Zero Prime Matrices</h4>
+                <p class="authors">Dong Lu, Dingkang Wang, Fanghui Xiao, <strong>Xiaopeng Zheng</strong>.</p>
+                <p class="venue"><em>SCIENTIA SINICA Mathematica</em>. 56(7) (2026), 1295–1308. In Chinese.</p>
+                <p class="doi">DOI: <a href="https://doi.org/10.1360/SSM-2025-0054">10.1360/SSM-2025-0054</a></p>
+                <div class="paper-links" aria-label="Links for An Efficient Algorithm for Computing Syzygy Modules of Zero Prime Matrices">
+                  <a href="https://www.sciengine.com/SSM/doi/10.1360/SSM-2025-0054">Publisher</a>
+                  <a href="http://mmrc.iss.ac.cn/~dwang/papers/26scichina-c.pdf">PDF (author-hosted)</a>
+                </div>
+              </article>
+            </li>
+            <!-- Publication: comprehensive-order-bases. Copy this entire li element to add a paper. -->
+            <li>
+              <article id="comprehensive-order-bases" aria-labelledby="comprehensive-order-bases-title">
+                <h4 class="pub-title" id="comprehensive-order-bases-title">An Algorithm for Computing Comprehensive Order Basis Systems of Parametric Polynomial Matrices</h4>
+                <p class="authors">Runhe Yang, Yao Sun, Dingkang Wang, Fanghui Xiao, <strong>Xiaopeng Zheng</strong>.</p>
+                <p class="venue"><em>Journal of Systems Science and Complexity</em>. Published online 16 January 2026. <span class="badge">Online first</span></p>
+                <p class="doi">DOI: <a href="https://doi.org/10.1007/s11424-026-4233-9">10.1007/s11424-026-4233-9</a></p>
+                <div class="paper-links" aria-label="Links for An Algorithm for Computing Comprehensive Order Basis Systems of Parametric Polynomial Matrices">
+                  <a href="http://mmrc.iss.ac.cn/~dwang/papers/25jssc.pdf">PDF (author-hosted)</a>
+                </div>
+              </article>
+            </li>
+            </ol>
+          </div>
+          <div class="publication-year" id="papers-2025">
+            <h3 class="year-heading">2025<span class="year-count">4 papers</span></h3>
+            <ol class="publication-list">
+            <!-- Publication: theory-smith-forms. Copy this entire li element to add a paper. -->
+            <li>
+              <article id="theory-smith-forms" aria-labelledby="theory-smith-forms-title">
+                <h4 class="pub-title" id="theory-smith-forms-title">Theory of Smith Forms for Bivariate Polynomial Matrices</h4>
+                <p class="authors">Dong Lu, Dingkang Wang, Fanghui Xiao, <strong>Xiaopeng Zheng</strong>.</p>
+                <p class="venue"><em>Journal of Systems Science and Complexity</em>. Published online 12 December 2025. <span class="badge">Online first</span></p>
+                <p class="doi">DOI: <a href="https://doi.org/10.1007/s11424-025-5125-0">10.1007/s11424-025-5125-0</a></p>
+                <div class="paper-links" aria-label="Links for Theory of Smith Forms for Bivariate Polynomial Matrices">
+                  <a href="http://mmrc.iss.ac.cn/~dwang/papers/25jssc2.pdf">PDF (author-hosted)</a>
+                </div>
+              </article>
+            </li>
+            <!-- Publication: parametric-unimodular-rows. Copy this entire li element to add a paper. -->
+            <li>
+              <article id="parametric-unimodular-rows" aria-labelledby="parametric-unimodular-rows-title">
+                <h4 class="pub-title" id="parametric-unimodular-rows-title">Completing Parametric Unimodular Rows to Unimodular Matrices</h4>
+                <p class="authors">Ligeng Fan, Dingkang Wang, Fanghui Xiao, <strong>Xiaopeng Zheng</strong>.</p>
+                <p class="venue"><em>Proceedings of ISSAC 2025</em>. 2025, 123–131.</p>
+                <p class="doi">DOI: <a href="https://doi.org/10.1145/3747199.3747554">10.1145/3747199.3747554</a></p>
+                <div class="paper-links" aria-label="Links for Completing Parametric Unimodular Rows to Unimodular Matrices">
+                  <a href="http://mmrc.iss.ac.cn/~dwang/papers/25issac.pdf">PDF (author-hosted)</a>
+                </div>
+              </article>
+            </li>
+            <!-- Publication: homomorphic-matrix-multiplication. Copy this entire li element to add a paper. -->
+            <li>
+              <article id="homomorphic-matrix-multiplication" aria-labelledby="homomorphic-matrix-multiplication-title">
+                <h4 class="pub-title" id="homomorphic-matrix-multiplication-title">A New Framework for Fast Homomorphic Matrix Multiplication</h4>
+                <p class="authors"><strong>Xiaopeng Zheng</strong>, Hongbo Li, Dingkang Wang.</p>
+                <p class="venue"><em>Designs, Codes and Cryptography</em>. 93(7) (2025), 2671–2693.</p>
+                <p class="doi">DOI: <a href="https://doi.org/10.1007/s10623-025-01614-y">10.1007/s10623-025-01614-y</a></p>
+                <div class="paper-links" aria-label="Links for A New Framework for Fast Homomorphic Matrix Multiplication">
+                  <a href="https://eprint.iacr.org/2023/1649">ePrint 2023/1649</a>
+                  <a href="http://mmrc.iss.ac.cn/~dwang/papers/25dcc.pdf">PDF (author-hosted)</a>
+                </div>
+              </article>
+            </li>
+            <!-- Publication: signature-standard-basis. Copy this entire li element to add a paper. -->
+            <li>
+              <article id="signature-standard-basis" aria-labelledby="signature-standard-basis-title">
+                <h4 class="pub-title" id="signature-standard-basis-title">Signature-Based Standard Basis Algorithm under the Framework of GVW Algorithm</h4>
+                <p class="authors">Dong Lu, Dingkang Wang, Fanghui Xiao, <strong>Xiaopeng Zheng</strong>.</p>
+                <p class="venue"><em>Journal of Symbolic Computation</em>. 127 (2025), Article 102370.</p>
+                <p class="doi">DOI: <a href="https://doi.org/10.1016/j.jsc.2024.102370">10.1016/j.jsc.2024.102370</a></p>
+                <div class="paper-links" aria-label="Links for Signature-Based Standard Basis Algorithm under the Framework of GVW Algorithm">
+                  <a href="http://mmrc.iss.ac.cn/~dwang/papers/25jsc.pdf">PDF (author-hosted)</a>
+                </div>
+              </article>
+            </li>
+            </ol>
+          </div>
+          <div class="publication-year" id="papers-2024">
+            <h3 class="year-heading">2024<span class="year-count">2 papers</span></h3>
+            <ol class="publication-list">
+            <!-- Publication: parametric-ore-polynomials. Copy this entire li element to add a paper. -->
+            <li>
+              <article id="parametric-ore-polynomials" aria-labelledby="parametric-ore-polynomials-title">
+                <h4 class="pub-title" id="parametric-ore-polynomials-title">An Algorithm for Computing Greatest Common Right Divisors of Parametric Ore Polynomials</h4>
+                <p class="authors">Xiuquan Ding, Dingkang Wang, Fanghui Xiao, <strong>Xiaopeng Zheng</strong>.</p>
+                <p class="venue"><em>Proceedings of ISSAC 2024</em>. 2024, 226–233.</p>
+                <p class="doi">DOI: <a href="https://doi.org/10.1145/3666000.3669694">10.1145/3666000.3669694</a></p>
+                <div class="paper-links" aria-label="Links for An Algorithm for Computing Greatest Common Right Divisors of Parametric Ore Polynomials">
+                  <a href="http://mmrc.iss.ac.cn/~dwang/papers/24issac.pdf">PDF (author-hosted)</a>
+                </div>
+              </article>
+            </li>
+            <!-- Publication: two-algorithms-rur. Copy this entire li element to add a paper. -->
+            <li>
+              <article id="two-algorithms-rur" aria-labelledby="two-algorithms-rur-title">
+                <h4 class="pub-title" id="two-algorithms-rur-title">Two Algorithms for Computing Rational Univariate Representations of Zero-Dimensional Ideals with Parameters</h4>
+                <p class="authors">Dingkang Wang, Jingjing Wei, Fanghui Xiao, <strong>Xiaopeng Zheng</strong>.</p>
+                <p class="venue"><em>arXiv:2403.16519</em>. Preprint, 2024. <span class="badge">Preprint</span></p>
+                <p class="doi">arXiv DOI: <a href="https://doi.org/10.48550/arXiv.2403.16519">10.48550/arXiv.2403.16519</a></p>
+                <div class="paper-links" aria-label="Links for Two Algorithms for Computing Rational Univariate Representations of Zero-Dimensional Ideals with Parameters">
+                  <a href="https://arxiv.org/abs/2403.16519">arXiv</a>
+                  <a href="https://arxiv.org/pdf/2403.16519">PDF</a>
+                </div>
+              </article>
+            </li>
+            </ol>
+          </div>
+          <div class="publication-year" id="papers-2023">
+            <h3 class="year-heading">2023<span class="year-count">3 papers</span></h3>
+            <ol class="publication-list">
+            <!-- Publication: equivalence-reduction-smith. Copy this entire li element to add a paper. -->
+            <li>
+              <article id="equivalence-reduction-smith" aria-labelledby="equivalence-reduction-smith-title">
+                <h4 class="pub-title" id="equivalence-reduction-smith-title">Equivalence and Reduction of Bivariate Polynomial Matrices to Their Smith Forms</h4>
+                <p class="authors">Dong Lu, Dingkang Wang, Fanghui Xiao, <strong>Xiaopeng Zheng</strong>.</p>
+                <p class="venue"><em>Journal of Symbolic Computation</em>. 118 (2023), 1–16.</p>
+                <p class="doi">DOI: <a href="https://doi.org/10.1016/j.jsc.2023.01.001">10.1016/j.jsc.2023.01.001</a></p>
+                <div class="paper-links" aria-label="Links for Equivalence and Reduction of Bivariate Polynomial Matrices to Their Smith Forms">
+                  <a href="http://mmrc.iss.ac.cn/~dwang/papers/23jsc3.pdf">PDF (author-hosted)</a>
+                </div>
+              </article>
+            </li>
+            <!-- Publication: new-results-equivalence. Copy this entire li element to add a paper. -->
+            <li>
+              <article id="new-results-equivalence" aria-labelledby="new-results-equivalence-title">
+                <h4 class="pub-title" id="new-results-equivalence-title">New Results on the Equivalence of Bivariate Polynomial Matrices</h4>
+                <p class="authors"><strong>Xiaopeng Zheng</strong>, Dong Lu, Dingkang Wang, Fanghui Xiao.</p>
+                <p class="venue"><em>Journal of Systems Science and Complexity</em>. 36(1) (2023), 77–95.</p>
+                <p class="doi">DOI: <a href="https://doi.org/10.1007/s11424-023-1304-z">10.1007/s11424-023-1304-z</a></p>
+                <div class="paper-links" aria-label="Links for New Results on the Equivalence of Bivariate Polynomial Matrices">
+                  <a href="http://mmrc.iss.ac.cn/~dwang/papers/23jssc1.pdf">PDF (author-hosted)</a>
+                </div>
+              </article>
+            </li>
+            <!-- Publication: general-factorization-nd. Copy this entire li element to add a paper. -->
+            <li>
+              <article id="general-factorization-nd" aria-labelledby="general-factorization-nd-title">
+                <h4 class="pub-title" id="general-factorization-nd-title">On General Factorization Problems of n-D Polynomial Matrices</h4>
+                <p class="authors">Dong Lu, Dingkang Wang, Fanghui Xiao, <strong>Xiaopeng Zheng</strong>.</p>
+                <p class="venue"><em>IEEE Transactions on Circuits and Systems II: Express Briefs</em>. 70(3) (2023), 1219–1223.</p>
+                <p class="doi">DOI: <a href="https://doi.org/10.1109/TCSII.2022.3223934">10.1109/TCSII.2022.3223934</a></p>
+                <div class="paper-links" aria-label="Links for On General Factorization Problems of n-D Polynomial Matrices">
+                  <a href="http://mmrc.iss.ac.cn/~dwang/papers/23ieee.pdf">PDF (author-hosted)</a>
+                </div>
+              </article>
+            </li>
+            </ol>
+          </div>
+          <div class="publication-year" id="papers-2022">
+            <h3 class="year-heading">2022<span class="year-count">2 papers</span></h3>
+            <ol class="publication-list">
+            <!-- Publication: property-polynomial-modules. Copy this entire li element to add a paper. -->
+            <li>
+              <article id="property-polynomial-modules" aria-labelledby="property-polynomial-modules-title">
+                <h4 class="pub-title" id="property-polynomial-modules-title">A Property of Modules over a Polynomial Ring with an Application in Multivariate Polynomial Matrix Factorizations</h4>
+                <p class="authors">Dong Lu, Dingkang Wang, Fanghui Xiao, <strong>Xiaopeng Zheng</strong>.</p>
+                <p class="venue"><em>Proceedings of ISSAC 2022</em>. 2022, 343–350.</p>
+                <p class="doi">DOI: <a href="https://doi.org/10.1145/3476446.3535470">10.1145/3476446.3535470</a></p>
+                <div class="paper-links" aria-label="Links for A Property of Modules over a Polynomial Ring with an Application in Multivariate Polynomial Matrix Factorizations">
+                  <a href="http://mmrc.iss.ac.cn/~dwang/papers/22issac1.pdf">PDF (author-hosted)</a>
+                </div>
+              </article>
+            </li>
+            <!-- Publication: rur-parameters. Copy this entire li element to add a paper. -->
+            <li>
+              <article id="rur-parameters" aria-labelledby="rur-parameters-title">
+                <h4 class="pub-title" id="rur-parameters-title">Rational Univariate Representation of Zero-Dimensional Ideals with Parameters</h4>
+                <p class="authors">Dingkang Wang, Jingjing Wei, Fanghui Xiao, <strong>Xiaopeng Zheng</strong>.</p>
+                <p class="venue"><em>Proceedings of ISSAC 2022</em>. 2022, 217–224.</p>
+                <p class="doi">DOI: <a href="https://doi.org/10.1145/3476446.3535496">10.1145/3476446.3535496</a></p>
+                <div class="paper-links" aria-label="Links for Rational Univariate Representation of Zero-Dimensional Ideals with Parameters">
+                  <a href="http://mmrc.iss.ac.cn/~dwang/papers/22issac2.pdf">PDF (author-hosted)</a>
+                </div>
+              </article>
+            </li>
+            </ol>
+          </div>
+          <details class="link-notes">
+            <summary>About publication dates and links</summary>
+            <p>Years follow the journal issue or conference year where available; online-first articles use the recorded online-publication year. Preprints use their archive year. An arXiv DOI identifies the preprint, not a journal publication.</p>
+            <p>DOI links lead to publication records, which may have access restrictions. Author-hosted PDFs are external links; some use HTTP. Availability and version may vary. This website does not host copies of those papers.</p>
+          </details>
         </section>
-
-        <!-- 编辑 6：项目内容同样需要如实填写。 -->
-        <section id="projects" aria-labelledby="projects-heading">
-          <h2 id="projects-heading">项目与笔记</h2>
-          <article class="entry">
-            <h3>【项目、复现工作或阅读笔记的标题】</h3>
-            <p>【说明研究问题、你做了什么，以及目前得到的结果。】</p>
-            <p class="project-note">【可选：写下这项工作最值得介绍的一个细节。没有内容时可删除这个 p 元素。】</p>
-          </article>
-        </section>
-
-        <!-- 编辑 7：联系方式完全可选。不愿公开邮箱时，删除相应段落。
-             要添加可点击的邮箱链接，请替换下面示例中的邮箱，再放到正文里：
-             <p><a href="mailto:your-name@example.com">your-name@example.com</a></p>
-             不要使用你已经无法接收邮件的邮箱。
-        -->
-        <section id="contact" aria-labelledby="contact-heading">
-          <h2 id="contact-heading">联系方式</h2>
-          <p>【可选：填写专门用于公开学术联系、且能够正常收信的邮箱。】</p>
-          <!-- 可选：在这里添加自己的 GitHub、ORCID 或 Scholar 公开主页链接。
-               链接旧 Scholar 页面且该页信息过时时，可以另写说明：
-               “该学术档案暂时无法维护，最新个人信息以本网站为准。”
-          -->
+        <section id="profiles" aria-labelledby="profiles-heading">
+          <h2 id="profiles-heading">Academic Profile</h2>
+          <p><a href="https://scholar.google.com/citations?user=ediZYJgAAAAJ&amp;hl=en">Google Scholar</a></p>
+          <p class="profile-note">I currently cannot update my Google Scholar profile; its affiliation information may be out of date.</p>
+          <!-- Optional public contact information: add a mailto link here only after
+               confirming a working email address. No address has been inferred. -->
         </section>
       </main>
     </div>
-
     <footer>
-      <!-- 编辑 8：请填写你实际更新内容的日期，不要自动伪造更新日期。 -->
-      <p>最近更新：【年-月-日】</p>
-      <a href="#top">返回顶部</a>
+      <p>Last updated: <time datetime="2026-10-11">11 October 2026</time></p>
+      <a href="#top">Back to top</a>
     </footer>
   </div>
 </body>
