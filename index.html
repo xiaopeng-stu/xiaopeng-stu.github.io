@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- 编辑 1：替换浏览器标签页标题和简介中的占位文字。 -->
+  <title>【你的姓名】｜学术主页</title>
+  <meta name="description" content="【你的姓名】的学术主页：研究兴趣、论文、项目和公开联系方式。">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <style>
+    :root {
+      --paper: #fcfcfa;
+      --ink: #202b36;
+      --muted: #596571;
+      --accent: #185b68;
+      --line: #dce3e2;
+      --tint: #f0f5f3;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-padding-top: 24px; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-size: 16px;
+      line-height: 1.85;
+      overflow-wrap: anywhere;
+    }
+    a { color: var(--accent); text-underline-offset: 4px; }
+    a:hover { text-decoration-thickness: 2px; }
+    a:focus-visible { outline: 3px solid var(--accent); outline-offset: 5px; }
+    .skip-link { position: absolute; left: 16px; top: -100px; padding: 8px 14px; background: white; }
+    .skip-link:focus { top: 12px; z-index: 2; }
+    .page { width: min(100% - 64px, 1060px); margin: 0 auto; }
+    .site-header { padding: 56px 0 34px; border-bottom: 1px solid var(--line); }
+    .eyebrow { margin: 0 0 10px; color: var(--accent); font-size: 13px; letter-spacing: 0.15em; }
+    h1, h2, h3 { line-height: 1.4; font-weight: 650; }
+    h1 { margin: 0 0 14px; font-size: clamp(30px, 4.5vw, 44px); letter-spacing: -0.025em; }
+    .affiliation { margin: 0; color: var(--muted); }
+    .layout { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 58px; padding-top: 38px; }
+    .sidebar { align-self: start; position: sticky; top: 26px; }
+    .nav-label { margin: 0 0 12px; color: var(--muted); font-size: 12px; letter-spacing: 0.08em; }
+    nav { display: flex; flex-direction: column; gap: 10px; }
+    nav a { width: fit-content; text-decoration: none; font-size: 15px; padding: 2px 0; }
+    nav a:hover { text-decoration: underline; }
+    .sidebar-note { margin: 28px 0 0; padding-top: 18px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
+    main { min-width: 0; }
+    section { margin-bottom: 34px; padding-bottom: 30px; border-bottom: 1px solid var(--line); }
+    section:last-child { margin-bottom: 0; border-bottom: none; }
+    h2 { margin: 0 0 18px; font-size: 22px; }
+    h3 { margin: 0 0 8px; font-size: 17px; }
+    p { margin: 0 0 13px; }
+    p:last-child { margin-bottom: 0; }
+    .interests { padding-left: 21px; margin: 0; }
+    .interests li { padding-left: 4px; margin-bottom: 8px; }
+    .interests li:last-child { margin-bottom: 0; }
+    .entry + .entry { margin-top: 24px; padding-top: 24px; border-top: 1px dashed var(--line); }
+    .meta { color: var(--muted); font-size: 14px; }
+    .project-note { margin-top: 12px; padding: 14px 18px; background: var(--tint); border-left: 3px solid var(--accent); }
+    footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; padding: 24px 0 32px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
+    footer p { margin: 0; }
+    @media (max-width: 720px) {
+      .page { width: min(100% - 36px, 600px); }
+      .site-header { padding: 36px 0 26px; }
+      .layout { grid-template-columns: 1fr; gap: 28px; padding-top: 24px; }
+      .sidebar { position: static; }
+      .nav-label, .sidebar-note { display: none; }
+      nav { flex-direction: row; flex-wrap: wrap; gap: 8px 21px; padding-bottom: 18px; border-bottom: 1px solid var(--line); }
+      section { margin-bottom: 26px; padding-bottom: 26px; }
+      h2 { font-size: 21px; }
+    }
+    @media print {
+      body { background: white; color: black; font-size: 11pt; }
+      .page { width: 100%; }
+      .site-header { padding-top: 0; }
+      .layout { display: block; padding-top: 24px; }
+      .sidebar, .skip-link, footer a { display: none; }
+      section, .entry { break-inside: avoid; }
+      a { color: inherit; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">跳转到正文</a>
+  <div class="page">
+    <header class="site-header" id="top">
+      <p class="eyebrow">学术主页</p>
+      <!-- 编辑 2：姓名可以是真名，也可以是你公开使用的名字。单位和身份均可删除。 -->
+      <h1>【你的姓名】</h1>
+      <p class="affiliation">【你的现单位】 · 【你的身份或研究方向】</p>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar" aria-label="页面导航">
+        <p class="nav-label">页内导航</p>
+        <nav aria-label="主导航">
+          <a href="#about">关于我</a>
+          <a href="#research">研究兴趣</a>
+          <a href="#publications">论文与成果</a>
+          <a href="#projects">项目与笔记</a>
+          <a href="#contact">联系方式</a>
+        </nav>
+        <p class="sidebar-note">研究、学习与公开成果的记录。</p>
+      </aside>
+
+      <main id="main-content">
+        <!-- 编辑 3：只填写真实且愿意公开的信息。HTML 注释也会公开，不要在其中放秘密。 -->
+        <section id="about" aria-labelledby="about-heading">
+          <h2 id="about-heading">关于我</h2>
+          <p>【个人简介：用两三句话介绍你的研究兴趣、正在学习的问题，以及你希望开展的工作。】</p>
+          <p>【补充介绍：可以写自己的研究经历或代表性工作；暂时没有内容时，可删除这一整行 p 元素。】</p>
+        </section>
+
+        <!-- 编辑 4：替换或删减研究方向。 -->
+        <section id="research" aria-labelledby="research-heading">
+          <h2 id="research-heading">研究兴趣</h2>
+          <ul class="interests">
+            <li>【研究方向一】</li>
+            <li>【研究方向二】</li>
+            <li>【研究方向三】</li>
+          </ul>
+        </section>
+
+        <!-- 编辑 5：每篇成果占一个 article。增加成果时，复制完整 article 元素。
+             没有论文也可以填写课程报告或复现成果，但请准确标注类型。
+             需要添加链接时，可在相应文章中加入：
+             <p><a href="把这里替换为论文的完整 HTTPS 地址">阅读论文</a></p>
+             上述示例位于注释中，不会显示在页面上。
+        -->
+        <section id="publications" aria-labelledby="publications-heading">
+          <h2 id="publications-heading">论文与成果</h2>
+          <article class="entry">
+            <h3>【论文或研究报告标题】</h3>
+            <p class="meta">【作者列表】 · 【年份】</p>
+            <p class="meta">【期刊、会议或成果类型；请如实标明已发表、预印本等状态】</p>
+            <p>【用一两句话介绍主要问题与结果。】</p>
+          </article>
+          <article class="entry">
+            <h3>【另一项成果的标题；没有时可删除整个 article 元素】</h3>
+            <p class="meta">【作者列表】 · 【年份】</p>
+            <p>【这项成果的类型、贡献或进展。】</p>
+          </article>
+        </section>
+
+        <!-- 编辑 6：项目内容同样需要如实填写。 -->
+        <section id="projects" aria-labelledby="projects-heading">
+          <h2 id="projects-heading">项目与笔记</h2>
+          <article class="entry">
+            <h3>【项目、复现工作或阅读笔记的标题】</h3>
+            <p>【说明研究问题、你做了什么，以及目前得到的结果。】</p>
+            <p class="project-note">【可选：写下这项工作最值得介绍的一个细节。没有内容时可删除这个 p 元素。】</p>
+          </article>
+        </section>
+
+        <!-- 编辑 7：联系方式完全可选。不愿公开邮箱时，删除相应段落。
+             要添加可点击的邮箱链接，请替换下面示例中的邮箱，再放到正文里：
+             <p><a href="mailto:your-name@example.com">your-name@example.com</a></p>
+             不要使用你已经无法接收邮件的邮箱。
+        -->
+        <section id="contact" aria-labelledby="contact-heading">
+          <h2 id="contact-heading">联系方式</h2>
+          <p>【可选：填写专门用于公开学术联系、且能够正常收信的邮箱。】</p>
+          <!-- 可选：在这里添加自己的 GitHub、ORCID 或 Scholar 公开主页链接。
+               链接旧 Scholar 页面且该页信息过时时，可以另写说明：
+               “该学术档案暂时无法维护，最新个人信息以本网站为准。”
+          -->
+        </section>
+      </main>
+    </div>
+
+    <footer>
+      <!-- 编辑 8：请填写你实际更新内容的日期，不要自动伪造更新日期。 -->
+      <p>最近更新：【年-月-日】</p>
+      <a href="#top">返回顶部</a>
+    </footer>
+  </div>
+</body>
+</html>
