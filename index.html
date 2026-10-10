@@ -3,15 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Xiaopeng Zheng | Research</title>
-  <meta name="description" content="Research papers by Xiaopeng Zheng in computer algebra, polynomial matrices, Gröbner bases, and fully homomorphic encryption.">
+  <title>Xiaopeng Zheng | Shantou University</title>
+  <meta name="description" content="Xiaopeng Zheng, Lecturer at Shantou University. Research in computer algebra and homomorphic encryption; publications, education, teaching, and research grants.">
+  <meta name="site-version" content="2026-10-11-profile-update">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="color-scheme" content="light">
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src 'self' data:; font-src 'self'; base-uri 'none'; form-action 'none'">
   <!-- Single-file static website. No JavaScript, external fonts, analytics or cookies.
        All text and HTML comments are public. Do not store private information here.
        UPDATE 1: Edit the name, description and introductory text as needed.
-       UPDATE 2: Add a current affiliation only after confirming the exact wording.
+       UPDATE 2: Edit Academic Appointments, Education, Research Grants and Teaching below.
+       Profile details and project dates were supplied by the site owner.
+       Grant period: 2027–2029. No grant number, subtype or degree subject is inferred.
        UPDATE 3: Add an email only when you are ready to make it public.
        Full publication sources and verification limitations are in PUBLICATION_NOTES.md.
   -->
@@ -38,6 +41,7 @@
     h1 { margin: 0 0 12px; font-family: Georgia, "Times New Roman", serif;
       font-size: clamp(36px, 5vw, 50px); font-weight: 500; letter-spacing: -.03em; }
     .affiliation { margin: 0; color: var(--muted); font-size: 17px; }
+    .research-tagline { margin: 6px 0 0; color: var(--muted); font-size: 14px; }
     .layout { display: grid; grid-template-columns: 172px minmax(0, 1fr); gap: 58px; padding-top: 34px; }
     .sidebar { align-self: start; position: sticky; top: 26px; }
     .nav-label { margin: 0 0 12px; font-size: 11px; color: var(--muted);
@@ -61,6 +65,37 @@
     .interest-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
     .interest-grid h3 { margin: 0 0 6px; font-size: 15px; font-weight: 650; }
     .interest-grid p { color: var(--muted); font-size: 14px; line-height: 1.65; }
+    /* Curriculum vitae, funding and teaching sections. */
+    .cv-list { list-style: none; padding: 0; margin: 0; }
+    .cv-item { display: grid; grid-template-columns: 124px minmax(0, 1fr);
+      gap: 18px; padding: 16px 0; }
+    .cv-item:first-child { padding-top: 2px; }
+    .cv-item:last-child { padding-bottom: 0; }
+    .cv-item + .cv-item { border-top: 1px solid var(--line); }
+    .cv-date { margin: 0; padding-top: 2px; color: var(--muted); font-size: 13px;
+      font-variant-numeric: tabular-nums; }
+    .cv-content { min-width: 0; }
+    .cv-content h3 { margin: 0 0 4px; font-size: 17px; font-weight: 650; }
+    .cv-content p { margin: 0 0 5px; font-size: 14px; line-height: 1.65; }
+    .cv-content p:last-child { margin-bottom: 0; }
+    .cv-content .cv-detail { color: var(--muted); font-size: 13px; }
+    .institution-link { text-decoration-color: #b4c5c7; }
+    .grant-card { padding: 19px 21px; border: 1px solid var(--line);
+      border-left: 3px solid var(--accent); border-radius: 4px; }
+    .grant-program { margin: 0 0 8px; color: var(--accent); font-size: 12px; font-weight: 650; }
+    .grant-card h3 { margin: 0 0 9px; font-size: 18px; font-weight: 650; line-height: 1.5; }
+    .grant-funder { margin: 0 0 13px; color: var(--muted); font-size: 14px; }
+    .grant-meta { display: flex; flex-wrap: wrap; gap: 9px 28px; margin: 0; font-size: 13px; }
+    .grant-meta > div { display: flex; flex-wrap: wrap; gap: 4px 7px; }
+    .grant-meta dt { color: var(--muted); }
+    .grant-meta dd { margin: 0; color: var(--ink); font-weight: 550; }
+    .teaching-intro { font-size: 14px; color: var(--muted); }
+    .course-list { display: grid; grid-template-columns: 1fr 1fr; gap: 0 24px;
+      list-style: none; padding: 0; margin: 4px 0 0; }
+    .course-list li { position: relative; padding: 11px 0 11px 15px;
+      border-bottom: 1px solid var(--line); font-size: 14px; line-height: 1.65; }
+    .course-list li::before { content: ""; position: absolute; left: 0; top: 21px;
+      width: 4px; height: 4px; border-radius: 50%; background: var(--accent); }
     .section-heading { display: flex; align-items: baseline; justify-content: space-between;
       gap: 16px; flex-wrap: wrap; }
     .section-heading h2 { margin-bottom: 8px; }
@@ -119,6 +154,13 @@
       .authors, .venue { font-size: 13px; }
       .affiliation { font-size: 15px; }
     }
+    @media (max-width: 540px) {
+      .cv-item { grid-template-columns: 1fr; gap: 4px; }
+      .cv-date { padding-top: 0; font-size: 12px; }
+      .course-list { grid-template-columns: 1fr; }
+      .grant-card { padding: 16px 17px; }
+      .grant-card h3 { font-size: 17px; }
+    }
     @media (max-width: 460px) {
       .interest-grid { grid-template-columns: 1fr; gap: 16px; }
       .section-heading { gap: 0 12px; }
@@ -130,7 +172,7 @@
       .site-header { padding: 0 0 16px; }
       .layout { display: block; padding-top: 20px; }
       .sidebar, .skip-link, .year-nav, .link-notes, footer a { display: none; }
-      .publication-list > li { break-inside: avoid; }
+      .publication-list > li, .cv-item, .grant-card { break-inside: avoid; }
       .year-heading { break-after: avoid; }
       .pub-title { font-size: 11pt; }
       .authors, .venue { font-size: 9pt; }
@@ -147,8 +189,8 @@
     <header class="site-header" id="top">
       <p class="eyebrow">Academic website</p>
       <h1>Xiaopeng Zheng</h1>
-      <p class="affiliation">Computer Algebra &amp; Homomorphic Encryption</p>
-      <!-- Optional current affiliation: add a new p element here after confirming it. -->
+      <p class="affiliation">Lecturer · Shantou University</p>
+      <p class="research-tagline">Computer Algebra &amp; Homomorphic Encryption</p>
     </header>
     <div class="layout">
       <aside class="sidebar" aria-label="Page navigation">
@@ -156,6 +198,10 @@
         <nav class="main-nav" aria-label="Main navigation">
           <a href="#about">About</a>
           <a href="#research">Research Interests</a>
+          <a href="#appointments">Academic Appointments</a>
+          <a href="#education">Education</a>
+          <a href="#grants">Research Grants</a>
+          <a href="#teaching">Teaching</a>
           <a href="#publications">Research Papers</a>
           <a href="#profiles">Academic Profile</a>
         </nav>
@@ -174,7 +220,9 @@
       <main id="main-content">
         <section id="about" aria-labelledby="about-heading">
           <h2 id="about-heading">About</h2>
-          <!-- Introductory text drafted from the topics of the supplied papers. Edit freely. -->
+          <!-- Biography supplied by the site owner. Edit these paragraphs to update your profile. -->
+          <p class="intro">I am a Lecturer at Shantou University. I completed my Ph.D. studies at the Academy of Mathematics and Systems Science, Chinese Academy of Sciences, in 2024, supervised by <a href="http://mmrc.iss.ac.cn/~dwang/">Dingkang Wang</a>.</p>
+          <!-- Research description drafted from the supplied publications. -->
           <p class="intro">My research focuses on computer algebra and fully homomorphic encryption. I study polynomial matrices, Gröbner bases, and parametric polynomial systems, as well as algorithms for efficient computation on encrypted data.</p>
         </section>
         <section id="research" aria-labelledby="research-heading">
@@ -189,6 +237,66 @@
               <p>Homomorphic matrix multiplication; functional bootstrapping; CKKS bootstrapping and efficient linear transformations.</p>
             </div>
           </div>
+        </section>
+        <!-- UPDATE: Academic appointments. Use only positions you intend to make public. -->
+        <section id="appointments" aria-labelledby="appointments-heading">
+          <h2 id="appointments-heading">Academic Appointments</h2>
+          <ul class="cv-list">
+            <li class="cv-item">
+              <p class="cv-date">2024–Present</p>
+              <div class="cv-content">
+                <h3>Lecturer</h3>
+                <p><a class="institution-link" href="https://english.stu.edu.cn/">Shantou University</a></p>
+              </div>
+            </li>
+          </ul>
+        </section>
+        <!-- UPDATE: Education. Degree subjects and a separate degree-awarding university
+             have not been inferred from the research institution. -->
+        <section id="education" aria-labelledby="education-heading">
+          <h2 id="education-heading">Education</h2>
+          <ul class="cv-list">
+            <li class="cv-item">
+              <p class="cv-date">2019–2024</p>
+              <div class="cv-content">
+                <h3>Ph.D.</h3>
+                <p><a class="institution-link" href="https://english.amss.cas.cn/">Academy of Mathematics and Systems Science</a>, Chinese Academy of Sciences</p>
+                <p class="cv-detail">Advisor: <a href="http://mmrc.iss.ac.cn/~dwang/">Dingkang Wang</a> (Research Professor)</p>
+              </div>
+            </li>
+            <li class="cv-item">
+              <p class="cv-date">2015–2019</p>
+              <div class="cv-content">
+                <h3>Bachelor’s Degree</h3>
+                <p><a class="institution-link" href="https://english.scnu.edu.cn/">South China Normal University</a></p>
+              </div>
+            </li>
+          </ul>
+        </section>
+        <!-- UPDATE: Research grants. Preserve the actual project period.
+             Add the grant number only after confirming its exact value. -->
+        <section id="grants" aria-labelledby="grants-heading">
+          <h2 id="grants-heading">Research Grants</h2>
+          <div class="grant-card">
+            <p class="grant-program">Young Scientists Fund · NSFC</p>
+            <h3>Theory and Algorithms of Dynamic Gröbner Bases</h3>
+            <p class="grant-funder">National Natural Science Foundation of China</p>
+            <dl class="grant-meta">
+              <div><dt>Role:</dt><dd>Principal Investigator</dd></div>
+              <div><dt>Project period:</dt><dd>2027–2029</dd></div>
+            </dl>
+          </div>
+        </section>
+        <!-- UPDATE: Teaching. Course names are English translations of the supplied titles. -->
+        <section id="teaching" aria-labelledby="teaching-heading">
+          <h2 id="teaching-heading">Teaching</h2>
+          <p class="teaching-intro">My teaching includes the following courses:</p>
+          <ul class="course-list">
+            <li>Advanced Calculus</li>
+            <li>Probability Theory and Mathematical Statistics</li>
+            <li>Linear Algebra</li>
+            <li>Survey Sampling</li>
+          </ul>
         </section>
         <section id="publications" aria-labelledby="publications-heading">
           <div class="section-heading">
